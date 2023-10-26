@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
 
 func main() {
@@ -38,14 +39,30 @@ func main() {
 
 				word = ""
 				continue
-			} else if (letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z') {
+			} else {
 				word += string(letter)
 			}
-
 		}
-
+		index := 1
+		index2 := 0
 		for _, v := range result {
-			fmt.Println(v)
+
+			if index > 9 {
+				index = 1
+				z01.PrintRune(rune(index2+'0'))
+				index2++
+			}
+			
+			z01.PrintRune(rune(index + '0'))
+			z01.PrintRune(':')
+			z01.PrintRune(' ')
+			for _, char := range v {
+				z01.PrintRune(char)
+			}
+
+			z01.PrintRune('\n')
+			index++
+
 		}
 	}
 }
@@ -54,8 +71,6 @@ func letterInWord(letters []string, word string) (int, bool) {
 
 	var result int
 	var isTrue bool
-
-
 
 	for _, letter := range letters {
 
